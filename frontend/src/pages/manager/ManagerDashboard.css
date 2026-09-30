@@ -1,0 +1,583 @@
+.manager-dashboard {
+  min-height: 100vh;
+  background: #f6f8fb;
+  color: #111827;
+}
+
+/* ============================================================
+   TOP BAR
+   ============================================================ */
+
+.manager-topbar {
+  height: 76px;
+  padding: 0 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.manager-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.manager-brand-logo {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.manager-brand h2 {
+  margin: 0;
+  font-size: 17px;
+  color: #111827;
+}
+
+.manager-brand span {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.manager-profile {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.manager-avatar,
+.employee-mini-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 700;
+}
+
+.manager-avatar {
+  width: 40px;
+  height: 40px;
+  background: #e5e7eb;
+  color: #111827;
+  font-size: 14px;
+}
+
+.manager-profile-info strong {
+  display: block;
+  font-size: 13px;
+  color: #111827;
+}
+
+.manager-profile-info span {
+  display: block;
+  margin-top: 2px;
+  color: #9ca3af;
+  font-size: 11px;
+}
+
+/* ============================================================
+   MAIN
+   ============================================================ */
+
+.manager-main {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 42px;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.manager-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 30px;
+  padding: 34px;
+  border-radius: 18px;
+  background: #111827;
+  color: #ffffff;
+}
+
+.manager-eyebrow {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  color: #9ca3af;
+}
+
+.manager-hero h1 {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.manager-hero p {
+  max-width: 620px;
+  margin: 10px 0 0;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.manager-main-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  padding: 13px 18px;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #111827;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.manager-main-action:hover {
+  background: #f3f4f6;
+}
+
+/* ============================================================
+   STAT CARDS
+   ============================================================ */
+
+.manager-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.manager-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  min-height: 132px;
+  padding: 22px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+}
+
+.manager-stat-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 12px;
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.pending-card .manager-stat-icon {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.approved-card .manager-stat-icon {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.employees-card .manager-stat-icon {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.manager-stat-content span {
+  display: block;
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.manager-stat-content strong {
+  display: block;
+  margin-top: 6px;
+  color: #111827;
+  font-size: 30px;
+  line-height: 1;
+}
+
+.manager-stat-content small {
+  display: block;
+  margin-top: 7px;
+  color: #9ca3af;
+  font-size: 11px;
+}
+
+/* ============================================================
+   CONTENT GRID
+   ============================================================ */
+
+.manager-content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(300px, 0.9fr);
+  gap: 20px;
+}
+
+.manager-panel {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.manager-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 22px 22px 18px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.manager-panel-header h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 17px;
+}
+
+.manager-panel-header p {
+  margin: 6px 0 0;
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.manager-panel-link {
+  color: #111827;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.manager-panel-link:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   RECENT TABLE
+   ============================================================ */
+
+.manager-recent-table-wrapper {
+  overflow-x: auto;
+}
+
+.manager-recent-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.manager-recent-table th,
+.manager-recent-table td {
+  padding: 15px 18px;
+  text-align: left;
+  border-bottom: 1px solid #f1f5f9;
+  white-space: nowrap;
+}
+
+.manager-recent-table th {
+  background: #fafbfc;
+  color: #6b7280;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.manager-recent-table td {
+  color: #374151;
+  font-size: 13px;
+}
+
+.manager-recent-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.manager-recent-table tbody tr:hover {
+  background: #fafafa;
+}
+
+.employee-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.employee-mini-avatar {
+  width: 34px;
+  height: 34px;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 11px;
+}
+
+.employee-cell strong {
+  display: block;
+  color: #111827;
+  font-size: 12px;
+}
+
+.employee-cell span {
+  display: block;
+  margin-top: 3px;
+  color: #9ca3af;
+  font-size: 10px;
+}
+
+.dates-cell strong {
+  display: block;
+  color: #374151;
+  font-size: 12px;
+}
+
+.dates-cell span {
+  display: block;
+  margin-top: 3px;
+  color: #9ca3af;
+  font-size: 10px;
+}
+
+/* ============================================================
+   STATUS
+   ============================================================ */
+
+.manager-status {
+  display: inline-flex;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.manager-status.pending {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.manager-status.approved {
+  background: #f0fdf4;
+  color: #15803d;
+}
+
+.manager-status.rejected {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.manager-status.cancelled {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+/* ============================================================
+   QUICK ACTIONS
+   ============================================================ */
+
+.manager-action-list {
+  padding: 8px;
+}
+
+.manager-action-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 13px;
+  border-radius: 11px;
+  color: #111827;
+  text-decoration: none;
+}
+
+.manager-action-item:hover {
+  background: #f8fafc;
+}
+
+.manager-action-icon {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #f3f4f6;
+  color: #374151;
+  font-weight: 800;
+}
+
+.manager-action-item strong {
+  display: block;
+  font-size: 12px;
+}
+
+.manager-action-item span {
+  display: block;
+  margin-top: 3px;
+  color: #9ca3af;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.manager-action-arrow {
+  margin-left: auto;
+  color: #9ca3af;
+  font-size: 16px !important;
+}
+
+/* ============================================================
+   STATES
+   ============================================================ */
+
+.manager-loading,
+.manager-error {
+  max-width: 650px;
+  margin: 100px auto;
+  padding: 35px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 15px;
+}
+
+.manager-error {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+.manager-panel-state {
+  display: flex;
+  min-height: 180px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 7px;
+  padding: 20px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+.manager-panel-state strong {
+  color: #374151;
+}
+
+.manager-panel-state.error {
+  color: #b91c1c;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 1050px) {
+  .manager-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 800px) {
+  .manager-topbar {
+    padding: 0 20px;
+  }
+
+  .manager-main {
+    padding: 20px;
+  }
+
+  .manager-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .manager-main-action {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .manager-stat-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .manager-profile-info {
+    display: none;
+  }
+
+  .manager-hero {
+    padding: 24px;
+  }
+
+  .manager-hero h1 {
+    font-size: 26px;
+  }
+}
+/* ============================================================
+   LOGOUT BUTTON
+   ============================================================ */
+
+.logout-button {
+  flex-shrink: 0;
+  padding: 9px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #374151;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.logout-button:hover {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+.logout-button:active {
+  transform: translateY(1px);
+}
+
+.manager-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+@media (max-width: 600px) {
+  .manager-profile {
+    gap: 8px;
+  }
+
+  .manager-profile-info {
+    display: none;
+  }
+
+  .logout-button {
+    padding: 8px 11px;
+    font-size: 11px;
+  }
+}
