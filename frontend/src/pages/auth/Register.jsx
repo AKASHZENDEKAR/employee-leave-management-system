@@ -1,18 +1,11 @@
 import { useState } from "react";
-import {
-  Link,
-  useNavigate,
-} from "react-router-dom";
-
-import AuthLayout from "../../layouts/AuthLayout";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../../services/api";
 
-import "./AuthPages.css";
-
-function Register() {
+export default function Register() {
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({
+  const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
     username: "",
@@ -21,61 +14,83 @@ function Register() {
     password_confirm: "",
   });
 
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (event) => {
-    setForm((previous) => ({
+    const { name, value } = event.target;
+
+    setFormData((previous) => ({
       ...previous,
-      [event.target.name]: event.target.value,
+      [name]: value,
     }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     setError("");
 
-    if (
-      form.password !==
-      form.password_confirm
-    ) {
-      setError(
-        "Passwords do not match."
-      );
+    if (formData.password !== formData.password_confirm) {
+      setError("Passwords do not match.");
       return;
     }
 
-    try {
-      setLoading(true);
+    if (formData.password.length < 8) {
+      setError("Password must be at least 8 characters.");
+      return;
+    }
 
-      await api.post(
+    setLoading(true);
+
+    try {
+      const response = await api.post(
         "/auth/register/",
-        form
+        {
+          first_name: formData.first_name.trim(),
+          last_name: formData.last_name.trim(),
+          username: formData.username.trim(),
+          email: formData.email.trim().toLowerCase(),
+          password: formData.password,
+          password_confirm: formData.password_confirm,
+        }
       );
 
+      console.log("Registration successful:", response.data);
+
+      // Registration endpoint returns user information,
+      // not JWT tokens. Login separately after registration.
       navigate("/login", {
+        replace: true,
         state: {
-          message:
+          registrationSuccess:
+            response.data?.detail ||
             "Account created successfully. Please sign in.",
         },
       });
-    } catch (errorResponse) {
-      const data =
-        errorResponse.response?.data;
+    } catch (err) {
+      console.error("Registration error:", err);
 
-      if (data) {
-        const firstError =
-          Object.values(data)
-            .flat()
-            .find(Boolean);
+      const data = err.response?.data;
+
+      if (data && typeof data === "object") {
+        const messages = Object.entries(data)
+          .flatMap(([field, value]) => {
+            if (Array.isArray(value)) {
+              return value.map((message) => `${field}: ${message}`);
+            }
+
+            return `${field}: ${value}`;
+          });
 
         setError(
-          firstError ||
-            "Registration failed."
+          messages.length
+            ? messages.join(" ")
+            : "Registration failed."
         );
       } else {
         setError(
-          "Registration failed."
+          err.message || "Registration failed."
         );
       }
     } finally {
@@ -84,112 +99,85 @@ function Register() {
   };
 
   return (
-    <AuthLayout>
+    <div className="auth-page">
       <div className="auth-card">
-        <div className="auth-header">
-          <h2>Create account</h2>
-          <p>
-            Register as an employee.
-          </p>
-        </div>
+        <h1>Create account</h1>
+        <p>Register as an employee.</p>
 
-        <form
-          className="auth-form"
-          onSubmit={handleSubmit}
-        >
-          <div className="form-row">
-            <div className="form-field">
-              <label>First name</label>
-              <input
-                name="first_name"
-                value={form.first_name}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="form-field">
-              <label>Last name</label>
-              <input
-                name="last_name"
-                value={form.last_name}
-                onChange={handleChange}
-              />
-            </div>
+        {error && (
+          <div className="error-message">
+            {error}
           </div>
+        )}
 
-          <div className="form-field">
-            <label>Username</label>
-            <input
-              name="username"
-              value={form.username}
-              onChange={handleChange}
-              required
-            />
-          </div>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="first_name"
+            placeholder="First name"
+            value={formData.first_name}
+            onChange={handleChange}
+            required
+          />
 
-          <div className="form-field">
-            <label>Email</label>
-            <input
-              name="email"
-              type="email"
-              value={form.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          <input
+            type="text"
+            name="last_name"
+            placeholder="Last name"
+            value={formData.last_name}
+            onChange={handleChange}
+            required
+          />
 
-          <div className="form-field">
-            <label>Password</label>
-            <input
-              name="password"
-              type="password"
-              value={form.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
 
-          <div className="form-field">
-            <label>Confirm password</label>
-            <input
-              name="password_confirm"
-              type="password"
-              value={form.password_confirm}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
 
-          {error && (
-            <div className="auth-error">
-              {error}
-            </div>
-          )}
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+
+          <input
+            type="password"
+            name="password_confirm"
+            placeholder="Confirm password"
+            value={formData.password_confirm}
+            onChange={handleChange}
+            required
+          />
 
           <button
-            className="primary-button"
             type="submit"
             disabled={loading}
           >
-            {loading
-              ? "Creating account..."
-              : "Create account"}
+            {loading ? "Creating..." : "Create account"}
           </button>
         </form>
 
-        <div className="auth-footer">
-          <span>
-            Already have an account?
-          </span>
-
-          <Link to="/login">
-            Sign in
-          </Link>
-        </div>
+        <p>
+          Already have an account?{" "}
+          <Link to="/login">Sign in</Link>
+        </p>
       </div>
-    </AuthLayout>
+    </div>
   );
 }
-
-export default Register;
