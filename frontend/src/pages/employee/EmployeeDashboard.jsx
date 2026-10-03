@@ -129,19 +129,25 @@ function EmployeeDashboard() {
     return "Good evening";
   };
 
-  const employeeName =
-    user?.first_name ||
-    user?.username ||
-    "Employee";
+  // ==========================================================
+  // Employee information
+  // ==========================================================
+  //
+  // Use the username used for login.
+  // Example:
+  // username = "vikas"
+  // Dashboard = "Good evening, vikas."
+  //
+  // ==========================================================
 
-  const employeeFullName = user?.first_name
-    ? `${user.first_name} ${user.last_name || ""}`.trim()
-    : user?.username || "Employee";
+  const employeeName =
+    user?.username || "Employee";
+
+  const employeeFullName =
+    user?.username || "Employee";
 
   const employeeInitial = (
-    user?.first_name?.[0] ||
-    user?.username?.[0] ||
-    "E"
+    user?.username?.[0] || "E"
   ).toUpperCase();
 
   // ==========================================================
@@ -168,6 +174,7 @@ function EmployeeDashboard() {
       <div className="employee-dashboard">
         <div className="employee-error">
           <h2>Unable to load dashboard</h2>
+
           <p>{error}</p>
 
           <Link
@@ -195,14 +202,19 @@ function EmployeeDashboard() {
       <header className="employee-topbar">
 
         <div className="employee-brand">
+
           <div className="employee-brand-logo">
             LF
           </div>
 
           <div>
             <h2>LeaveFlow</h2>
-            <span>Leave Management</span>
+
+            <span>
+              Leave Management
+            </span>
           </div>
+
         </div>
 
         <div className="employee-profile">
@@ -212,6 +224,7 @@ function EmployeeDashboard() {
           </div>
 
           <div className="employee-profile-info">
+
             <strong>
               {employeeFullName}
             </strong>
@@ -219,6 +232,7 @@ function EmployeeDashboard() {
             <span>
               Employee
             </span>
+
           </div>
 
           <LogoutButton />
@@ -226,7 +240,6 @@ function EmployeeDashboard() {
         </div>
 
       </header>
-
 
       {/* =====================================================
           MAIN
@@ -262,17 +275,22 @@ function EmployeeDashboard() {
             className="employee-main-action"
           >
             Apply Leave
-            <span>→</span>
+
+            <span>
+              →
+            </span>
+
           </Link>
 
         </section>
-
 
         {/* ===================================================
             STAT CARDS
             =================================================== */}
 
         <section className="employee-stat-grid">
+
+          {/* Remaining Leave */}
 
           <article className="employee-stat-card remaining-card">
 
@@ -298,6 +316,7 @@ function EmployeeDashboard() {
 
           </article>
 
+          {/* Used Leave */}
 
           <article className="employee-stat-card used-card">
 
@@ -323,6 +342,7 @@ function EmployeeDashboard() {
 
           </article>
 
+          {/* Approved */}
 
           <article className="employee-stat-card approved-card">
 
@@ -348,6 +368,7 @@ function EmployeeDashboard() {
 
           </article>
 
+          {/* Pending */}
 
           <article className="employee-stat-card pending-card">
 
@@ -375,7 +396,6 @@ function EmployeeDashboard() {
 
         </section>
 
-
         {/* ===================================================
             CONTENT
             =================================================== */}
@@ -391,6 +411,7 @@ function EmployeeDashboard() {
             <div className="employee-panel-header">
 
               <div>
+
                 <h2>
                   Recent Leave Requests
                 </h2>
@@ -398,6 +419,7 @@ function EmployeeDashboard() {
                 <p>
                   Your latest leave activity.
                 </p>
+
               </div>
 
               <Link
@@ -409,21 +431,31 @@ function EmployeeDashboard() {
 
             </div>
 
+            {/* Loading */}
 
             {leavesLoading ? (
 
               <div className="employee-panel-state">
+
                 <div className="small-loader"></div>
+
                 Loading requests...
+
               </div>
 
             ) : leavesError ? (
 
+              /* Error */
+
               <div className="employee-panel-state error">
+
                 {leavesError}
+
               </div>
 
             ) : recentLeaves.length === 0 ? (
+
+              /* Empty */
 
               <div className="employee-panel-state">
 
@@ -446,12 +478,16 @@ function EmployeeDashboard() {
 
             ) : (
 
+              /* Table */
+
               <div className="employee-table-wrapper">
 
                 <table className="employee-table">
 
                   <thead>
+
                     <tr>
+
                       <th>
                         Leave Type
                       </th>
@@ -467,7 +503,9 @@ function EmployeeDashboard() {
                       <th>
                         Status
                       </th>
+
                     </tr>
+
                   </thead>
 
                   <tbody>
@@ -506,10 +544,13 @@ function EmployeeDashboard() {
                         </td>
 
                         <td>
+
                           {leave.total_days}{" "}
+
                           {leave.total_days === 1
                             ? "day"
                             : "days"}
+
                         </td>
 
                         <td>
@@ -533,10 +574,10 @@ function EmployeeDashboard() {
                 </table>
 
               </div>
+
             )}
 
           </div>
-
 
           {/* =================================================
               QUICK ACTIONS
@@ -547,6 +588,7 @@ function EmployeeDashboard() {
             <div className="employee-panel-header">
 
               <div>
+
                 <h2>
                   Quick Actions
                 </h2>
@@ -554,12 +596,14 @@ function EmployeeDashboard() {
                 <p>
                   Manage your leave easily.
                 </p>
+
               </div>
 
             </div>
 
-
             <div className="employee-action-list">
+
+              {/* Apply Leave */}
 
               <Link
                 to="/employee/apply-leave"
@@ -571,6 +615,7 @@ function EmployeeDashboard() {
                 </div>
 
                 <div>
+
                   <strong>
                     Apply for Leave
                   </strong>
@@ -578,6 +623,7 @@ function EmployeeDashboard() {
                   <span>
                     Submit a new leave request
                   </span>
+
                 </div>
 
                 <span className="employee-action-arrow">
@@ -586,6 +632,7 @@ function EmployeeDashboard() {
 
               </Link>
 
+              {/* Leave History */}
 
               <Link
                 to="/employee/leave-history"
@@ -597,6 +644,7 @@ function EmployeeDashboard() {
                 </div>
 
                 <div>
+
                   <strong>
                     Leave History
                   </strong>
@@ -604,6 +652,7 @@ function EmployeeDashboard() {
                   <span>
                     View and manage your requests
                   </span>
+
                 </div>
 
                 <span className="employee-action-arrow">
