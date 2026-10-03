@@ -34,6 +34,12 @@ services:
       - key: DJANGO_ALLOWED_HOSTS
         sync: false
 
+      - key: DEFAULT_MANAGER_USERNAME
+        value: manager
+
+      - key: DEFAULT_MANAGER_PASSWORD
+        sync: false
+
       - key: CORS_ALLOWED_ORIGINS
         value: https://leave-management-frontend-9d5r.onrender.com
 
