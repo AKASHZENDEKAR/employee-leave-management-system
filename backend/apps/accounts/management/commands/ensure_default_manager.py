@@ -8,7 +8,10 @@ class Command(BaseCommand):
     help = "Create or update the configured default manager account."
 
     def handle(self, *args, **options):
-        username = os.getenv("DEFAULT_MANAGER_USERNAME", "manager").strip()
+        username = os.getenv(
+            "DEFAULT_MANAGER_USERNAME",
+            "MangerAkash",
+        ).strip()
         password = os.getenv("DEFAULT_MANAGER_PASSWORD", "")
 
         if not username or not password:
