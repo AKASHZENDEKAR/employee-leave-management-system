@@ -15,6 +15,7 @@ services:
     buildCommand: bash build.sh
 
     startCommand: >
+      python manage.py ensure_default_manager &&
       python -m gunicorn
       config.asgi:application
       -k uvicorn.workers.UvicornWorker
