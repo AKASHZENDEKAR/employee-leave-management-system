@@ -10,7 +10,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         username = os.getenv(
             "DEFAULT_MANAGER_USERNAME",
-            "MangerAkash",
+            "AkashManger",
         ).strip()
         password = os.getenv("DEFAULT_MANAGER_PASSWORD", "")
 
